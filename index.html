@@ -1,0 +1,180 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<title>Borano - Photography / Portfolio Template</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="shortcut icon" href="img/favicon.png">
+		<!-- plugins' css -->
+		<link rel="stylesheet" href="css/plugins.css">
+		<!-- google fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Oswald:400,700,300%7cPoppins:400,300,500,700,600' rel='stylesheet' type='text/css'>
+		<!-- main css file -->
+		<link rel="stylesheet" href="css/main.css">
+		<!-- modernizr -->
+		<script src="js/lib/modernizr-2.6.2.min.js"></script>
+        <script src="js/lib/jquery.min.js"></script>
+        <script>
+		function getUrlVars() {
+var vars = [], hash;
+var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+	
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
+
+var ss=localStorage.myfolder;
+alert(ss);
+
+var foldername = ss;
+		
+		
+		</script>
+          
+	</head>
+
+	<body>
+		<!-- MAIN_WRAPPER -->
+		<div class="main-wrapper animsition">
+
+			<!-- HEADER -->
+			
+			<!-- /HEADER -->
+			
+			<!-- SLIDESHOW ORIGINAL IMAGES-->
+			<div class="gallery-original swiper-container" data-autoplay="false" data-interval="4000">
+				<div class="swiper-wrapper" id="mslider">
+                
+                
+               
+                
+                
+                
+					
+
+				</div>
+			</div>
+			<!-- /SLIDESHOW ORIGINAL IMAGES-->
+			
+			<!-- SLIDESHOW THUMBNAILS-->
+			<div class="gallery-thumbs swiper-container">
+				<div class="swiper-wrapper" id="timg">
+					
+					
+				</div>
+			</div>
+			<!-- /SLIDESHOW THUMBNAILS-->
+			<!-- /SLIDESHOW THUMBNAILS-->
+		
+			<!-- FOOTER -->
+			<footer id="footer" class="fixed">
+				
+				<!-- FOOTER LINKS -->
+				<div class="footer-links pull-left">
+					&copy; 2018. By Umar. |
+					<a href="#">Facebook</a> |
+					<a href="#">Instagram</a> | 
+					<a href="#">500px</a>
+				</div>
+
+				<!-- SLIDE CAPTION -->
+				<div class="active-slide-caption"></div>
+				
+				<!-- CONTROLS -->
+				<div class="controls-wrapper">
+
+					<button class="sideslide swiper-prev">
+						<i class="fa fa-chevron-left"></i>
+					</button>
+					<button class="sideslide swiper-play">
+						<i class="fa fa-play"></i>
+					</button>
+					<button class="sideslide swiper-pause">
+						<i class="fa fa-pause"></i>
+					</button>
+					<button class="sideslide swiper-next">
+						<i class="fa fa-chevron-right"></i>
+					</button>
+					<button class="sideslide expand">
+						<i class="fa fa-expand"></i>
+					</button>
+                    <button class="">
+						<a href="" onclick="window.location.replace('folders.html')"><- Back</a>
+					</button>
+
+				</div>
+				<!-- C/ONTROLS -->
+
+			</footer>
+			<!-- /FOOTER -->
+
+		</div>	
+		<!-- /MAIN-WRAPPER -->
+		
+		<!-- js -->
+		
+		<script src="js/lib/scripts.js"></script>
+		<!-- main js -->
+		<script src="js/main.js"></script>
+         <script>
+
+//$('<img />').attr('src', 'FOLDER LOCATION HERE').appendTo('#mylist');
+
+var folder = "img/gallery1";
+
+alert(folder);
+var pp='';
+
+
+$.ajax({
+    url : folder,
+	async:false,
+    success: function (data) {
+        var patt1 = /"([^"]\.(jpe?g|png|gif))"/gi;     // extract "*.jpeg" or "*.jpg" or "*.png" or "*.gif"
+        var result = data.match(patt1);
+        result = result.map(function(el) { return el.replace(/"/g, ""); });     // remove double quotes (") surrounding filename+extension // TODO: do this at regex!
+
+        var uniqueNames = [];                               // this array will help to remove duplicate images
+        $.each(result, function(i, el){
+            var el_url_encoded = encodeURIComponent(el);    // avoid images with same name but converted to URL encoded
+            console.log("under analysis: " + el);
+            if($.inArray(el, uniqueNames) === -1  &&  $.inArray(el_url_encoded, uniqueNames) === -1){
+                console.log("adding " + el_url_encoded);
+                uniqueNames.push(el_url_encoded);
+               // $("#slider").append( "<img src='" + folder+"/"+el_url_encoded +"' alt=''>" );      // finaly add to HTML
+				
+				$("#mslider").append( "<div class='swiper-slide' data-background='" + folder+"/"+el_url_encoded +"' data-caption='Like the legend of the Phoenix' data-link=''></div>" );
+				
+				
+				$("#timg").append( "<div class='swiper-slide'><div class='gallery-thumbs-item' data-background='" + folder+"/"+el_url_encoded +"' ></div></div>" );
+				
+				
+				
+				   
+            } else{   console.log(el_url_encoded + " already in!"); }
+        });
+    },
+    error: function(xhr, textStatus, err) {
+       alert('Error: here we go...');
+       alert(textStatus);
+       alert(err);
+       alert("readyState: "+xhr.readyState+"\n xhrStatus: "+xhr.status);
+       alert("responseText: "+xhr.responseText);
+   }
+});
+
+</script>
+     
+	</body>
+</html>
