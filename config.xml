@@ -17,4 +17,6 @@
       Umar Hayat
   </author>
 
+    <plugin name="cordova-plugin-file" spec="~6.0.1" />
+    
 </widget>
