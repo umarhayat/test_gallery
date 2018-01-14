@@ -7,10 +7,10 @@
 
 <!-- versionCode is optional and Android only -->
 
-  <name>Museum Gallery</name>
+  <name>my test gallery</name>
 
   <description>
-      Museum Gallery Application.
+      test Gallery Application.
   </description>
 
   <author href="https://github.com/umarhayat/Museum Gallery" email="umarhayat@gmail.com">
